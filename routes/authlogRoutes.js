@@ -6,11 +6,11 @@ const router = express.Router();
 //Add new user
 router.post("/register", async (req, res) => {
    try {
-    const {username, password} = req.body;
+    const {username, password, email} = req.body;
 
     //validate input
-    if (!username || !password) {
-        return res.status(400).json({ error: " invalid input, send username and password"});
+    if (!username || !password || !email) {
+        return res.status(400).json({ error: " invalid input, send username, password and email"});
     }
 
     //correct - save user
@@ -23,7 +23,24 @@ router.post("/register", async (req, res) => {
 
 //Login user
 router.post("/login", async (req, res) => {
-    console.log("Login called...");
+    try {
+        const {username, password} = req.body;
+    
+        //validate input
+        if (!username || !password) {
+            return res.status(400).json({ error: " invalid input, send username and password"});
+        }
+    
+        //check credentials
+        if (username === "annelii" && password === "password") {
+            res.status(200).json({ message: " Login succesful..."});
+        } else {
+           res.status(401).json({ error: "Invalid username/password"});
+        }
+    
+       } catch (error) {
+        res.status(500).json({error: " server error"});
+       }
 });
 
 //return
