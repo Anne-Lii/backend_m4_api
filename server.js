@@ -11,7 +11,7 @@ require("dotenv").config();
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({origin: "*"}));
 
 //Routes
 app.use("/api", authlogRoutes); 
