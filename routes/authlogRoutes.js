@@ -61,9 +61,10 @@ router.post("/login", async (req, res) => {
         if(!isPasswordMatch) {
             return res.status(401).json({ error: "Incorrect username/password"});
         } else {
+
             //create JWT
             const payload = {username: username};
-            const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: '12h'});
+            const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: '1h'});
            
             const response = {
                 message: "User logged in",

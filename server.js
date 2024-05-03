@@ -19,6 +19,7 @@ app.use("/api", authlogRoutes);
 //protected route
 app.get("/mypages", authenticateToken, (req, res) => {
     res.json({message: "authentication and token validation succesful", user: req.user});
+   
 });
 
 //validate token
@@ -30,7 +31,6 @@ function authenticateToken(req, res, next) {
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
         if(error) return res.status(403).json({message: "Unvalid JWT!"});
-
         req.user = user;
         next();
     });
@@ -38,5 +38,5 @@ function authenticateToken(req, res, next) {
 
 //start applikation
 app.listen(port,()=> {
-    console.log("server running at port: " + port)
+    console.log("server running at port: " + port)  
 })
