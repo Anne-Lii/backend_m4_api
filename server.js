@@ -17,7 +17,7 @@ app.use(cors({origin: "*"}));
 app.use("/api", authlogRoutes); 
 
 //protected route
-app.get("/api/mypages", authenticateToken, (req, res) => {
+app.get("/mypages", authenticateToken, (req, res) => {
     res.json({message: "authentication and token validation succesful", user: req.user});
 });
 
