@@ -18,7 +18,7 @@ app.use("/api", authlogRoutes);
 
 //protected route
 app.get("/api/mypages", authenticateToken, (req, res) => {
-    res.json({message: "skyddad route"});
+    res.json({message: "authentication and token validation succesful", user: req.user});
 });
 
 //validate token
