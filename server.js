@@ -26,6 +26,7 @@ app.get("/mypages", authenticateToken, (req, res) => {
 function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1]; //token
+    console.log(token);
 
     if(token == null) res.status(401).json({message: "Not authorized for this route - Token missing!"});
 
