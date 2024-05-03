@@ -27,12 +27,7 @@ function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1]; //token
 
-    console.log(token);
-
-    if(token==null) {
-        res.status(401).json({message: "Not authorized for this route - Token missing!"});
-        window.location.replace("index.html");
-    } 
+    if(token == null) res.status(401).json({message: "Not authorized for this route - Token missing!"});
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
         if(error) return res.status(403).json({message: "Unvalid JWT!"});
