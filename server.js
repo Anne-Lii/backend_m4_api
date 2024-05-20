@@ -22,6 +22,11 @@ app.get("/mypages", authenticateToken, (req, res) => {
    
 });
 
+// protected route for userinfo
+app.get("/api/userinfo", authenticateToken, (req, res) => {
+    res.json({ user: req.user });
+});
+
 //validate token
 function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
